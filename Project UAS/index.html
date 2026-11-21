@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mengenal Sistem Pernapasan Manusia — Multimedia Interaktif & Learning Analytics</title>
+  
+  <!-- Google Fonts: Quicksand, Barlow, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for clean UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Chart.js for Learning Analytics Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= TOPBAR UTAMA ================= -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="header-logo">
+        <i class="fa-solid fa-lungs"></i>
+      </div>
+      <div class="header-titles">
+        <span class="badge-tag">IPA KELAS VIII • SMP</span>
+        <h1 class="header-main-title">Mengenal Sistem Pernapasan Manusia</h1>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="session-tracker" id="sessionTracker" style="display: none;">
+        <div class="tracker-item">
+          <i class="fa-solid fa-user-graduate"></i>
+          <span id="trackerStudentName">Peserta Didik</span>
+        </div>
+        <div class="tracker-divider"></div>
+        <div class="tracker-item">
+          <i class="fa-solid fa-clock"></i>
+          <span id="trackerDuration">00:00</span>
+        </div>
+        <div class="tracker-divider"></div>
+        <div class="tracker-item">
+          <span class="badge-step" id="trackerStepBadge">Langkah 1/11</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="btn-guru" id="btnToggleTeacherMode" title="Akses Dashboard Khusus Guru">
+        <i class="fa-solid fa-chalkboard-user"></i>
+        <span>Dashboard Guru</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <div class="app-layout">
+    
+    <!-- SIDEBAR NAVIGASI LANGKAH SISWA (Sesuai Storyboard & Desain UTS) -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <div class="team-brand">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <div>
+            <strong>Kelompok 5 PTIK-D</strong>
+            <small>Universitas Negeri Medan</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-labels">
+          <span class="progress-title">Progres Belajar</span>
+          <span class="progress-val" id="progressPercentageText">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="sidebarProgressBar" style="width: 9%;"></div>
+        </div>
+        <div class="progress-status" id="sidebarStepCountText">Langkah 1 dari 11</div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <button class="step-btn active" data-step="1">
+          <span class="step-num">01</span>
+          <span class="step-name">Beranda Pembuka</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        <button class="step-btn" data-step="2">
+          <span class="step-num">02</span>
+          <span class="step-name">Tujuan Belajar</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        <button class="step-btn" data-step="3">
+          <span class="step-num">03</span>
+          <span class="step-name">Organ Pernapasan</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        <button class="step-btn" data-step="4">
+          <span class="step-num">04</span>
+          <span class="step-name">Proses Pernapasan</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        <button class="step-btn" data-step="5">
+          <span class="step-num">05</span>
+          <span class="step-name">Video Pembelajaran</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        
+        <div class="menu-divider">
+          <span>EVALUASI & KUIS</span>
+        </div>
+
+        <button class="step-btn" data-step="6">
+          <span class="step-num">06</span>
+          <span class="step-name">Kuis — Soal 1</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        <button class="step-btn" data-step="7">
+          <span class="step-num">07</span>
+          <span class="step-name">Kuis — Soal 2</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        <button class="step-btn" data-step="8">
+          <span class="step-num">08</span>
+          <span class="step-name">Kuis — Soal 3</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        <button class="step-btn" data-step="9">
+          <span class="step-num">09</span>
+          <span class="step-name">Kuis — Soal 4</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        <button class="step-btn" data-step="10">
+          <span class="step-num">10</span>
+          <span class="step-name">Kuis — Soal 5</span>
+          <i class="fa-solid fa-chevron-right step-arrow"></i>
+        </button>
+        
+        <div class="menu-divider">
+          <span>EVALUASI AKHIR</span>
+        </div>
+
+        <button class="step-btn" data-step="11">
+          <span class="step-num">11</span>
+          <span class="step-name">Hasil & Rekomendasi</span>
+          <i class="fa-solid fa-award step-arrow"></i>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small>© 2026 Tim Pengembang UNIMED</small>
+      </div>
+    </aside>
+
+    <!-- KONTEN AREA SISWA (11 LAYAR SESUAI STORYBOARD UTS) -->
+    <main class="content-viewport" id="studentViewport">
+
+      <!-- ================= LAYAR 1: PEMBUKA ================= -->
+      <section class="screen-view active" id="screen-1">
+        <div class="screen-hero-container">
+          <div class="hero-left">
+            <span class="hero-tag">MEDIA PEMBELAJARAN INTERAKTIF IPA</span>
+            <h1 class="hero-title">
+              Mengenal <span class="highlight-cyan">Sistem</span><br>
+              <span class="highlight-pink">Pernapasan</span><br>
+              Manusia
+            </h1>
+            <p class="hero-desc">
+              Pelajari organ-organ vital, mekanisme pertukaran udara inspirasi-ekspirasi, 
+              serta uji pemahamanmu melalui aktivitas interaktif dan kuis seru!
+            </p>
+
+            <!-- Form Identitas Siswa agar Tercatat Otomatis di Learning Analytics -->
+            <div class="student-auth-card">
+              <label for="studentNameInput" class="input-label">
+                <i class="fa-solid fa-user-pen"></i> Masukkan Nama Siswa untuk Memulai:
+              </label>
+              <div class="input-group">
+                <input type="text" id="studentNameInput" placeholder="Contoh: Rian Pratama" maxlength="35" autofocus autocomplete="off">
+                <button class="btn-action-start" id="btnStartLearning">
+                  <span>MULAI</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+              <small class="auth-hint">
+                <i class="fa-solid fa-circle-info"></i> Aktivitas belajarmu akan dicatat otomatis untuk membantu evaluasi belajarmu.
+              </small>
+            </div>
+
+            <!-- Identitas Kelompok 5 sesuai Slide UTS -->
+            <div class="creator-badge">
+              <div class="avatar-icon"><i class="fa-solid fa-users"></i></div>
+              <div class="creator-info">
+                <strong>Kelompok 5 • PTIK-D 2026</strong>
+                <span>Ester Oktaviani • Lulu Afsari • Nurul Ahadia • Deby Lestari</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="illustration-wrapper">
+              <div class="glow-backdrop"></div>
+              <!-- Gambar ilustrasi asli dari Figma 1.png atau visual SVG -->
+              <img src="assets/1.png" alt="Ilustrasi Sistem Pernapasan Manusia" class="hero-image" onerror="this.onerror=null; this.src='assets/Media pembelajaran interaktif sistem pernapasan-1.svg';">
+              <div class="floating-badge badge-1">
+                <i class="fa-solid fa-shield-virus"></i>
+                <span>6 Organ Utama</span>
+              </div>
+              <div class="floating-badge badge-2">
+                <i class="fa-solid fa-wind"></i>
+                <span>Inspirasi & Ekspirasi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 2: TUJUAN PEMBELAJARAN ================= -->
+      <section class="screen-view" id="screen-2">
+        <div class="content-header-card">
+          <div class="step-indicator-pill">Langkah 02 dari 11</div>
+          <h2 class="section-title">Tujuan Pembelajaran</h2>
+          <p class="section-subtitle">Setelah belajar menggunakan media interaktif ini, kamu diharapkan mampu:</p>
+        </div>
+
+        <div class="objectives-grid">
+          <div class="objective-card card-cyan">
+            <div class="obj-header">
+              <span class="obj-num">01</span>
+              <div class="obj-icon"><i class="fa-solid fa-book-open"></i></div>
+            </div>
+            <h3 class="obj-title">Pengertian Sistem Pernapasan</h3>
+            <p class="obj-desc">Menjelaskan pengertian serta hakikat sistem pernapasan pada tubuh manusia dengan tepat.</p>
+          </div>
+
+          <div class="objective-card card-pink">
+            <div class="obj-header">
+              <span class="obj-num">02</span>
+              <div class="obj-icon"><i class="fa-solid fa-lungs"></i></div>
+            </div>
+            <h3 class="obj-title">Organ & Fungsinya</h3>
+            <p class="obj-desc">Mengidentifikasi 6 organ utama pernapasan manusia dan menguraikan fungsi spesifik masing-masing organ.</p>
+          </div>
+
+          <div class="objective-card card-yellow">
+            <div class="obj-header">
+              <span class="obj-num">03</span>
+              <div class="obj-icon"><i class="fa-solid fa-arrows-spin"></i></div>
+            </div>
+            <h3 class="obj-title">Mekanisme Udara</h3>
+            <p class="obj-desc">Menganalisis perbedaan mekanisme inspirasi (menarik napas) dan ekspirasi (menghembuskan napas).</p>
+          </div>
+
+          <div class="objective-card card-green">
+            <div class="obj-header">
+              <span class="obj-num">04</span>
+              <div class="obj-icon"><i class="fa-solid fa-chart-line"></i></div>
+            </div>
+            <h3 class="obj-title">Evaluasi Pemahaman</h3>
+            <p class="obj-desc">Mengukur tingkat pemahaman melalui kuis interaktif dengan umpan balik langsung dan rekomendasi belajar.</p>
+          </div>
+        </div>
+
+        <!-- Tombol Navigasi Bawah -->
+        <div class="screen-nav-bar">
+          <button class="btn-nav btn-prev" data-target="1">
+            <i class="fa-solid fa-arrow-left"></i> KEMBALI
+          </button>
+          <button class="btn-nav btn-next" data-target="3">
+            LANJUT KE ORGAN <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 3: ORGAN PERNAPASAN ================= -->
+      <section class="screen-view" id="screen-3">
+        <div class="content-header-card">
+          <div class="step-indicator-pill">Langkah 03 dari 11</div>
+          <h2 class="section-title">Organ-Organ Pernapasan Manusia</h2>
+          <p class="section-subtitle">
+            <i class="fa-solid fa-hand-pointer"></i> <strong>Aktivitas Interaktif:</strong> Klik kartu organ atau titik pada diagram untuk mempelajari detail fungsinya.
+          </p>
+        </div>
+
+        <div class="organ-interactive-container">
+          <!-- Sisi Kiri: Diagram Anatomi Interaktif -->
+          <div class="organ-diagram-box">
+            <div class="diagram-canvas-wrap">
+              <img src="assets/3.png" alt="Diagram Organ Pernapasan" class="diagram-img" onerror="this.onerror=null; this.src='assets/Media pembelajaran interaktif sistem pernapasan-3.svg';">
+              
+              <!-- Hotspots Interaktif -->
+              <div class="hotspot hs-hidung active" data-organ="hidung" title="1. Hidung">1</div>
+              <div class="hotspot hs-faring" data-organ="faring" title="2. Faring">2</div>
+              <div class="hotspot hs-laring" data-organ="laring" title="3. Laring">3</div>
+              <div class="hotspot hs-trakea" data-organ="trakea" title="4. Trakea">4</div>
+              <div class="hotspot hs-bronkus" data-organ="bronkus" title="5. Bronkus">5</div>
+              <div class="hotspot hs-alveolus" data-organ="alveolus" title="6. Alveolus / Paru-paru">6</div>
+            </div>
+            <div class="diagram-tip">
+              <i class="fa-solid fa-lightbulb"></i> Tips: Pelajari keenam organ secara lengkap sebelum beralih ke materi proses!
+            </div>
+          </div>
+
+          <!-- Sisi Kanan: Kartu 6 Organ & Info Panel -->
+          <div class="organ-details-box">
+            <div class="organ-cards-list">
+              <button class="organ-pill-btn active" data-organ="hidung">
+                <span class="organ-order">1</span>
+                <span class="organ-label">Hidung</span>
+                <i class="fa-solid fa-check organ-read-icon" id="read-hidung"></i>
+              </button>
+              <button class="organ-pill-btn" data-organ="faring">
+                <span class="organ-order">2</span>
+                <span class="organ-label">Faring</span>
+                <i class="fa-solid fa-check organ-read-icon" id="read-faring"></i>
+              </button>
+              <button class="organ-pill-btn" data-organ="laring">
+                <span class="organ-order">3</span>
+                <span class="organ-label">Laring</span>
+                <i class="fa-solid fa-check organ-read-icon" id="read-laring"></i>
+              </button>
+              <button class="organ-pill-btn" data-organ="trakea">
+                <span class="organ-order">4</span>
+                <span class="organ-label">Trakea</span>
+                <i class="fa-solid fa-check organ-read-icon" id="read-trakea"></i>
+              </button>
+              <button class="organ-pill-btn" data-organ="bronkus">
+                <span class="organ-order">5</span>
+                <span class="organ-label">Bronkus</span>
+                <i class="fa-solid fa-check organ-read-icon" id="read-bronkus"></i>
+              </button>
+              <button class="organ-pill-btn" data-organ="alveolus">
+                <span class="organ-order">6</span>
+                <span class="organ-label">Paru-paru (Alveolus)</span>
+                <i class="fa-solid fa-check organ-read-icon" id="read-alveolus"></i>
+              </button>
+            </div>
+
+            <!-- Panel Penjelasan Organ Terpilih -->
+            <div class="organ-explanation-card" id="organExplanationCard">
+              <div class="organ-exp-header">
+                <div class="exp-badge" id="expBadge">Organ #1</div>
+                <h3 class="exp-title" id="expTitle">Rongga Hidung</h3>
+              </div>
+              <div class="exp-body">
+                <div class="exp-section">
+                  <strong><i class="fa-solid fa-gear"></i> Fungsi Utama:</strong>
+                  <p id="expFungsi">
+                    Tempat masuknya udara pernapasan pertama kali. Di dalam rongga hidung terdapat rambut-rambut hidung 
+                    dan selaput lendir yang berfungsi menyaring debu, mengatur suhu (menghangatkan), serta melembapkan udara yang masuk.
+                  </p>
+                </div>
+                <div class="exp-section exp-fact-box">
+                  <strong><i class="fa-solid fa-star"></i> Fakta Menarik:</strong>
+                  <p id="expFakta">
+                    Rambut hidung (silia) bergerak seperti sapu mikro yang mencegah partikel kotoran dan bakteri masuk ke paru-paru.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-nav-bar">
+          <button class="btn-nav btn-prev" data-target="2">
+            <i class="fa-solid fa-arrow-left"></i> KEMBALI
+          </button>
+          <button class="btn-nav btn-next" data-target="4">
+            LANJUT KE PROSES <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 4: PROSES PERNAPASAN ================= -->
+      <section class="screen-view" id="screen-4">
+        <div class="content-header-card">
+          <div class="step-indicator-pill">Langkah 04 dari 11</div>
+          <h2 class="section-title">Proses Pernapasan: Inspirasi vs Ekspirasi</h2>
+          <p class="section-subtitle">Bandingkan dua fase pernapasan manusia melalui perbandingan berdampingan dan simulasi gerakan.</p>
+        </div>
+
+        <div class="process-dual-container">
+          <!-- Panel Hijau: Inspirasi -->
+          <div class="process-panel panel-inspirasi">
+            <div class="process-header">
+              <span class="process-tag green-tag">FASE 1</span>
+              <h3>Inspirasi (Tarik Napas)</h3>
+              <p>Proses masuknya udara luar yang kaya oksigen ke dalam paru-paru.</p>
+            </div>
+
+            <div class="process-interactive-box">
+              <div class="lung-simulation-graphic sim-inspirasi" id="simInspirasi">
+                <div class="ribcage-box">
+                  <div class="air-flow air-in"><i class="fa-solid fa-arrow-down-long"></i> Udara Masuk (O₂)</div>
+                  <div class="lungs-shape lung-expanded">
+                    <i class="fa-solid fa-lungs"></i>
+                    <span>Paru-paru Mengembang</span>
+                  </div>
+                  <div class="diaphragm-curve dia-flat">Diafragma Berkontraksi (Mendatar)</div>
+                </div>
+              </div>
+            </div>
+
+            <ul class="process-steps-list">
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Otot antartulang rusuk berkontraksi</strong>, tulang rusuk terangkat ke atas.</li>
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Diafragma berkontraksi</strong> sehingga posisinya mendatar.</li>
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Volume rongga dada membesar</strong>, tekanan udara dalam paru-paru mengecil.</li>
+              <li><i class="fa-solid fa-circle-check"></i> Udara luar bertekanan lebih tinggi <strong>mengalir masuk</strong> ke paru-paru.</li>
+            </ul>
+          </div>
+
+          <!-- Panel Pink: Ekspirasi -->
+          <div class="process-panel panel-ekspirasi">
+            <div class="process-header">
+              <span class="process-tag pink-tag">FASE 2</span>
+              <h3>Ekspirasi (Hembuskan Napas)</h3>
+              <p>Proses keluarnya udara kaya karbon dioksida dari paru-paru ke luar tubuh.</p>
+            </div>
+
+            <div class="process-interactive-box">
+              <div class="lung-simulation-graphic sim-ekspirasi" id="simEkspirasi">
+                <div class="ribcage-box">
+                  <div class="air-flow air-out"><i class="fa-solid fa-arrow-up-long"></i> Udara Keluar (CO₂)</div>
+                  <div class="lungs-shape lung-collapsed">
+                    <i class="fa-solid fa-lungs"></i>
+                    <span>Paru-paru Mengempis</span>
+                  </div>
+                  <div class="diaphragm-curve dia-curved">Diafragma Relaksasi (Melengkung ke Atas)</div>
+                </div>
+              </div>
+            </div>
+
+            <ul class="process-steps-list">
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Otot antartulang rusuk relaksasi</strong>, tulang rusuk turun kembali.</li>
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Diafragma berelaksasi</strong> dan melengkung kembali ke atas.</li>
+              <li><i class="fa-solid fa-circle-check"></i> <strong>Volume rongga dada mengecil</strong>, tekanan dalam paru-paru meningkat.</li>
+              <li><i class="fa-solid fa-circle-check"></i> Udara dalam paru-paru <strong>terdorong keluar</strong> menuju atmosfer.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="screen-nav-bar">
+          <button class="btn-nav btn-prev" data-target="3">
+            <i class="fa-solid fa-arrow-left"></i> KEMBALI
+          </button>
+          <button class="btn-nav btn-next" data-target="5">
+            LANJUT KE VIDEO <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 5: VIDEO PEMBELAJARAN ================= -->
+      <section class="screen-view" id="screen-5">
+        <div class="content-header-card">
+          <div class="step-indicator-pill">Langkah 05 dari 11</div>
+          <h2 class="section-title">Video Pembelajaran: Pertukaran Gas di Alveolus</h2>
+          <p class="section-subtitle">Tonton video interaktif berikut, lalu jawab pertanyaan cek pemahaman singkat di sebelah kanan.</p>
+        </div>
+
+        <div class="video-section-grid">
+          <!-- Sisi Kiri: Video Player -->
+          <div class="video-player-box">
+            <div class="video-wrapper">
+              <iframe 
+                id="mainVideoFrame" 
+                src="https://www.youtube.com/embed/-gIfCgq6BSs?enablejsapi=1" 
+                title="Sistem Pernapasan Manusia kelas 8 SMP - Channel Edu" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="video-meta-bar">
+              <div class="video-source-info">
+                <i class="fa-brands fa-youtube" style="color: #FF0000;"></i>
+                <span>Sumber: Channel Edu — "Sistem Pernapasan Manusia Kelas 8 SMP"</span>
+              </div>
+              <button class="btn-mark-video" id="btnMarkVideoDone">
+                <i class="fa-solid fa-circle-check"></i>
+                <span id="videoStatusBtnText">Tandai Sudah Selesai Menonton</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Sisi Kanan: Panel Quick Check Pertanyaan Singkat -->
+          <div class="video-quiz-box">
+            <div class="quick-quiz-card">
+              <div class="qq-tag"><i class="fa-solid fa-bolt"></i> CEK CEPAT PEMAHAMAN</div>
+              <h3 class="qq-question">
+                Berdasarkan video di samping, di manakah letak kantung kecil tempat terjadinya pertukaran gas O₂ dan CO₂ secara difusi?
+              </h3>
+              
+              <div class="qq-options">
+                <button class="qq-opt" data-answer="A">
+                  <span class="opt-key">A</span>
+                  <span class="opt-txt">Trakea (Tenggorokan)</span>
+                </button>
+                <button class="qq-opt" data-answer="B">
+                  <span class="opt-key">B</span>
+                  <span class="opt-txt">Bronkus kanan & kiri</span>
+                </button>
+                <button class="qq-opt" data-answer="C" data-correct="true">
+                  <span class="opt-key">C</span>
+                  <span class="opt-txt">Alveolus pada paru-paru</span>
+                </button>
+                <button class="qq-opt" data-answer="D">
+                  <span class="opt-key">D</span>
+                  <span class="opt-txt">Laring (Pangkal tenggorok)</span>
+                </button>
+              </div>
+
+              <div class="qq-feedback" id="qqFeedback" style="display: none;">
+                <!-- Dinamis diisi JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-nav-bar">
+          <button class="btn-nav btn-prev" data-target="4">
+            <i class="fa-solid fa-arrow-left"></i> KEMBALI
+          </button>
+          <button class="btn-nav btn-next" data-target="6">
+            LANJUT KE KUIS <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 6: KUIS — SOAL 1 ================= -->
+      <section class="screen-view" id="screen-6">
+        <div class="quiz-step-container">
+          <div class="quiz-nav-strip">
+            <span class="quiz-header-badge">EVALUASI PEMAHAMAN SISWA</span>
+            <div class="question-tracker-pills">
+              <span class="q-pill active">1</span>
+              <span class="q-pill">2</span>
+              <span class="q-pill">3</span>
+              <span class="q-pill">4</span>
+              <span class="q-pill">5</span>
+            </div>
+          </div>
+
+          <div class="quiz-main-card">
+            <div class="quiz-question-header">
+              <div class="q-number-tag">Soal No. 1 dari 5 • Topik: Organ Pernapasan</div>
+              <h2 class="q-title">
+                Bagian organ pernapasan yang menjadi jalur masuknya udara pertama kali dan dilengkapi rambut-rambut halus serta selaput lendir untuk menyaring debu adalah...
+              </h2>
+            </div>
+
+            <div class="quiz-options-grid" data-qid="1">
+              <button class="quiz-option-btn" data-key="A" data-correct="true">
+                <span class="opt-circle">A</span>
+                <span class="opt-label">Rongga Hidung</span>
+              </button>
+              <button class="quiz-option-btn" data-key="B">
+                <span class="opt-circle">B</span>
+                <span class="opt-label">Faring</span>
+              </button>
+              <button class="quiz-option-btn" data-key="C">
+                <span class="opt-circle">C</span>
+                <span class="opt-label">Trakea</span>
+              </button>
+              <button class="quiz-option-btn" data-key="D">
+                <span class="opt-circle">D</span>
+                <span class="opt-label">Laring</span>
+              </button>
+            </div>
+
+            <!-- Feedback Box Otomatis -->
+            <div class="quiz-feedback-box" id="feedback-q1" style="display: none;"></div>
+          </div>
+        </div>
+
+        <div class="screen-nav-bar">
+          <button class="btn-nav btn-prev" data-target="5">
+            <i class="fa-solid fa-arrow-left"></i> KEMBALI
+          </button>
+          <button class="btn-nav btn-next btn-quiz-next" data-target="7" id="btnNextQ1" disabled>
+            SELANJUTNYA (SOAL 2) <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 7: KUIS — SOAL 2 ================= -->
+      <section class="screen-view" id="screen-7">
+        <div class="quiz-step-container">
+          <div class="quiz-nav-strip">
+            <span class="quiz-header-badge">EVALUASI PEMAHAMAN SISWA</span>
+            <div class="question-tracker-pills">
+              <span class="q-pill done">1</span>
+              <span class="q-pill active">2</span>
+              <span class="q-pill">3</span>
+              <span class="q-pill">4</span>
+              <span class="q-pill">5</span>
+            </div>
+          </div>
+
+          <div class="quiz-main-card">
+            <div class="quiz-question-header">
+              <div class="q-number-tag">Soal No. 2 dari 5 • Topik: Organ Pernapasan</div>
+              <h2 class="q-title">
+                Trakea tersusun atas cincin-cincin tulang rawan dan epitel bersilia. Fungsi utama dari silia pada dinding trakea tersebut adalah...
+              </h2>
+            </div>
+
+            <div class="quiz-options-grid" data-qid="2">
+              <button class="quiz-option-btn" data-key="A">
+                <span class="opt-circle">A</span>
+                <span class="opt-label">Mempercepat laju aliran oksigen ke pembuluh darah</span>
+              </button>
+              <button class="quiz-option-btn" data-key="B">
+                <span class="opt-circle">B</span>
+                <span class="opt-label">Menghangatkan suhu udara hingga sesuai suhu tubuh</span>
+              </button>
+              <button class="quiz-option-btn" data-key="C" data-correct="true">
+                <span class="opt-circle">C</span>
+                <span class="opt-label">Menyaring dan menyapu partikel asing/debu keluar dari saluran napas</span>
+              </button>
+              <button class="quiz-option-btn" data-key="D">
+                <span class="opt-circle">D</span>
+                <span class="opt-label">Menutup saluran pernapasan ketika kita sedang menelan makanan</span>
+              </button>
+            </div>
+
+            <div class="quiz-feedback-box" id="feedback-q2" style="display: none;"></div>
+          </div>
+        </div>
+
+        <div class="screen-nav-bar">
+          <button class="btn-nav btn-prev" data-target="6">
+            <i class="fa-solid fa-arrow-left"></i> KEMBALI
+          </button>
+          <button class="btn-nav btn-next btn-quiz-next" data-target="8" id="btnNextQ2" disabled>
+            SELANJUTNYA (SOAL 3) <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 8: KUIS — SOAL 3 ================= -->
+      <section class="screen-view" id="screen-8">
+        <div class="quiz-step-container">
+          <div class="quiz-nav-strip">
+            <span class="quiz-header-badge">EVALUASI PEMAHAMAN SISWA</span>
+            <div class="question-tracker-pills">
+              <span class="q-pill done">1</span>
+              <span class="q-pill done">2</span>
+              <span class="q-pill active">3</span>
+              <span class="q-pill">4</span>
+              <span class="q-pill">5</span>
+            </div>
+          </div>
+
+          <div class="quiz-main-card">
+            <div class="quiz-question-header">
+              <div class="q-number-tag">Soal No. 3 dari 5 • Topik: Mekanisme Inspirasi</div>
+              <h2 class="q-title">
+                Pada saat seseorang melakukan proses inspirasi (menarik napas), perubahan apakah yang terjadi pada rongga dada dan paru-paru?
+              </h2>
+            </div>
+
+            <div class="quiz-options-grid" data-qid="3">
+              <button class="quiz-option-btn" data-key="A" data-correct="true">
+                <span class="opt-circle">A</span>
+                <span class="opt-label">Volume rongga dada membesar dan paru-paru mengembang</span>
+              </button>
+              <button class="quiz-option-btn" data-key="B">
+                <span class="opt-circle">B</span>
+                <span class="opt-label">Volume rongga dada mengecil dan paru-paru mengempis</span>
+              </button>
+              <button class="quiz-option-btn" data-key="C">
+                <span class="opt-circle">C</span>
+                <span class="opt-label">Volume rongga dada tetap, tetapi tekanan paru-paru meningkat pesat</span>
+              </button>
+              <button class="quiz-option-btn" data-key="D">
+                <span class="opt-circle">D</span>
+                <span class="opt-label">Diafragma melengkung ke atas menekan paru-paru</span>
+              </button>
+            </div>
+
+            <div class="quiz-feedback-box" id="feedback-q3" style="display: none;"></div>
+          </div>
+        </div>
+
+        <div class="screen-nav-bar">
+          <button class="btn-nav btn-prev" data-target="7">
+            <i class="fa-solid fa-arrow-left"></i> KEMBALI
+          </button>
+          <button class="btn-nav btn-next btn-quiz-next" data-target="9" id="btnNextQ3" disabled>
+            SELANJUTNYA (SOAL 4) <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 9: KUIS — SOAL 4 ================= -->
+      <section class="screen-view" id="screen-9">
+        <div class="quiz-step-container">
+          <div class="quiz-nav-strip">
+            <span class="quiz-header-badge">EVALUASI PEMAHAMAN SISWA</span>
+            <div class="question-tracker-pills">
+              <span class="q-pill done">1</span>
+              <span class="q-pill done">2</span>
+              <span class="q-pill done">3</span>
+              <span class="q-pill active">4</span>
+              <span class="q-pill">5</span>
+            </div>
+          </div>
+
+          <div class="quiz-main-card">
+            <div class="quiz-question-header">
+              <div class="q-number-tag">Soal No. 4 dari 5 • Topik: Mekanisme Ekspirasi</div>
+              <h2 class="q-title">
+                Bagaimanakah kondisi otot diafragma pada saat tubuh kita melakukan fase ekspirasi (menghembuskan napas)?
+              </h2>
+            </div>
+
+            <div class="quiz-options-grid" data-qid="4">
+              <button class="quiz-option-btn" data-key="A">
+                <span class="opt-circle">A</span>
+                <span class="opt-label">Otot diafragma berkontraksi dan posisinya mendatar</span>
+              </button>
+              <button class="quiz-option-btn" data-key="B">
+                <span class="opt-circle">B</span>
+                <span class="opt-label">Otot diafragma bergerak turun mendorong organ lambung</span>
+              </button>
+              <button class="quiz-option-btn" data-key="C">
+                <span class="opt-circle">C</span>
+                <span class="opt-label">Otot diafragma diam tidak bergerak sama sekali</span>
+              </button>
+              <button class="quiz-option-btn" data-key="D" data-correct="true">
+                <span class="opt-circle">D</span>
+                <span class="opt-label">Otot diafragma berelaksasi dan bentuknya melengkung kembali ke atas</span>
+              </button>
+            </div>
+
+            <div class="quiz-feedback-box" id="feedback-q4" style="display: none;"></div>
+          </div>
+        </div>
+
+        <div class="screen-nav-bar">
+          <button class="btn-nav btn-prev" data-target="8">
+            <i class="fa-solid fa-arrow-left"></i> KEMBALI
+          </button>
+          <button class="btn-nav btn-next btn-quiz-next" data-target="10" id="btnNextQ4" disabled>
+            SELANJUTNYA (SOAL 5) <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 10: KUIS — SOAL 5 ================= -->
+      <section class="screen-view" id="screen-10">
+        <div class="quiz-step-container">
+          <div class="quiz-nav-strip">
+            <span class="quiz-header-badge">EVALUASI PEMAHAMAN SISWA</span>
+            <div class="question-tracker-pills">
+              <span class="q-pill done">1</span>
+              <span class="q-pill done">2</span>
+              <span class="q-pill done">3</span>
+              <span class="q-pill done">4</span>
+              <span class="q-pill active">5</span>
+            </div>
+          </div>
+
+          <div class="quiz-main-card">
+            <div class="quiz-question-header">
+              <div class="q-number-tag">Soal No. 5 dari 5 • Topik: Alveolus & Pertukaran Gas</div>
+              <h2 class="q-title">
+                Pertukaran gas oksigen (O₂) dari udara ke dalam darah dan pengeluaran karbon dioksida (CO₂) dari darah ke udara berlangsung secara difusi pada organ...
+              </h2>
+            </div>
+
+            <div class="quiz-options-grid" data-qid="5">
+              <button class="quiz-option-btn" data-key="A">
+                <span class="opt-circle">A</span>
+                <span class="opt-label">Bronkiolus</span>
+              </button>
+              <button class="quiz-option-btn" data-key="B" data-correct="true">
+                <span class="opt-circle">B</span>
+                <span class="opt-label">Alveolus</span>
+              </button>
+              <button class="quiz-option-btn" data-key="C">
+                <span class="opt-circle">C</span>
+                <span class="opt-label">Laring</span>
+              </button>
+              <button class="quiz-option-btn" data-key="D">
+                <span class="opt-circle">D</span>
+                <span class="opt-label">Trakea</span>
+              </button>
+            </div>
+
+            <div class="quiz-feedback-box" id="feedback-q5" style="display: none;"></div>
+          </div>
+        </div>
+
+        <div class="screen-nav-bar">
+          <button class="btn-nav btn-prev" data-target="9">
+            <i class="fa-solid fa-arrow-left"></i> KEMBALI
+          </button>
+          <button class="btn-nav btn-next btn-finish-quiz" data-target="11" id="btnFinishQuiz" disabled>
+            LIHAT HASIL EVALUASI <i class="fa-solid fa-award"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= LAYAR 11: HASIL & FEEDBACK SISWA ================= -->
+      <section class="screen-view" id="screen-11">
+        <div class="results-hero-box">
+          <div class="results-left">
+            <div class="score-circle-wrap">
+              <div class="score-circle" id="scoreCircle">
+                <span class="score-number" id="finalScoreText">0</span>
+                <span class="score-max">/ 100</span>
+              </div>
+              <span class="score-badge" id="scoreBadgeText">Selesai</span>
+            </div>
+            
+            <div class="results-intro">
+              <h2 class="results-greeting" id="resultsGreeting">Kerja Bagus, Siswa!</h2>
+              <p class="results-summary" id="resultsSummaryText">
+                Kamu telah menyelesaikan seluruh materi pembelajaran dan evaluasi kuis sistem pernapasan manusia.
+              </p>
+              <div class="results-quick-stats">
+                <div class="rq-item">
+                  <i class="fa-solid fa-circle-check" style="color: #2ECC71;"></i>
+                  <span>Benar: <strong id="resCorrectCount">0</strong>/5</span>
+                </div>
+                <div class="rq-item">
+                  <i class="fa-solid fa-circle-xmark" style="color: #E8488A;"></i>
+                  <span>Salah: <strong id="resWrongCount">0</strong>/5</span>
+                </div>
+                <div class="rq-item">
+                  <i class="fa-solid fa-clock" style="color: #3B82F6;"></i>
+                  <span>Durasi: <strong id="resDuration">0m</strong></span>
+                </div>
+                <div class="rq-item">
+                  <i class="fa-solid fa-rotate-right" style="color: #F59E0B;"></i>
+                  <span>Percobaan: Ke-<strong id="resAttempt">1</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="results-right">
+            <div class="topic-mastery-card">
+              <h4><i class="fa-solid fa-chart-simple"></i> Capaian Pemahaman per Topik</h4>
+              
+              <div class="topic-bar-item">
+                <div class="t-bar-label">
+                  <span>Organ & Fungsinya (Soal 1, 2, 5)</span>
+                  <span id="topicOrganPct">0%</span>
+                </div>
+                <div class="t-bar-track">
+                  <div class="t-bar-fill" id="topicOrganFill" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="topic-bar-item">
+                <div class="t-bar-label">
+                  <span>Mekanisme Inspirasi & Ekspirasi (Soal 3, 4)</span>
+                  <span id="topicProsesPct">0%</span>
+                </div>
+                <div class="t-bar-track">
+                  <div class="t-bar-fill" id="topicProsesFill" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="topic-bar-item">
+                <div class="t-bar-label">
+                  <span>Aktivitas Video Pembelajaran</span>
+                  <span id="topicVideoPct">0%</span>
+                </div>
+                <div class="t-bar-track">
+                  <div class="t-bar-fill" id="topicVideoFill" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REKOMENDASI BELAJAR PERSONAL SISWA (Prescriptive Analytics) -->
+        <div class="student-recommendation-card" id="studentRecommendationCard">
+          <div class="rec-card-header">
+            <i class="fa-solid fa-compass"></i>
+            <div>
+              <h3>Rekomendasi Pembelajaran Personal untuk Kamu</h3>
+              <small>Dihasilkan secara otomatis berdasarkan hasil analisis aktivitas dan jawaban kuismu.</small>
+            </div>
+          </div>
+          <div class="rec-content" id="studentRecText">
+            <!-- Dinamis dibuat oleh analytics.js -->
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Hasil -->
+        <div class="results-actions-bar">
+          <button class="btn-res btn-retake-quiz" id="btnRetakeQuiz">
+            <i class="fa-solid fa-rotate-left"></i> ULANGI KUIS
+          </button>
+          <button class="btn-res btn-review-material" id="btnReviewMaterial">
+            <i class="fa-solid fa-book-open"></i> BACA ULANG MATERI
+          </button>
+          <button class="btn-res btn-finish" id="btnFinishAll">
+            <i class="fa-solid fa-circle-check"></i> SELESAI BELAJAR
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ================= DASHBOARD LEARNING ANALYTICS (GURU & ADMIN) ================= -->
+    <section class="dashboard-viewport" id="teacherDashboard" style="display: none;">
+      
+      <!-- Top Bar Dashboard Guru -->
+      <div class="dashboard-topbar">
+        <div class="db-title-area">
+          <div class="db-badge"><i class="fa-solid fa-chart-line"></i> LEARNING ANALYTICS DASHBOARD</div>
+          <h2>Panel Analitik Guru • Sistem Pernapasan Manusia SMP Kelas VIII</h2>
+          <p>Pemantauan aktivitas real-time, analisis deskriptif, diagnostik kesulitan belajar, dan rekomendasi instruksional.</p>
+        </div>
+        
+        <div class="db-actions">
+          <!-- Filter Dataset: Asli vs Demo -->
+          <div class="dataset-switcher">
+            <span class="switcher-label"><i class="fa-solid fa-database"></i> Sumber Data:</span>
+            <div class="btn-group-toggle">
+              <button class="btn-toggle active" id="btnFilterAllData">Semua Data</button>
+              <button class="btn-toggle" id="btnFilterRealData">Data Asli Siswa</button>
+              <button class="btn-toggle" id="btnFilterDemoData">DATA DEMO</button>
+            </div>
+          </div>
+
+          <button class="btn-export-csv" id="btnExportCSV" title="Unduh Rekap Analitik dalam format CSV">
+            <i class="fa-solid fa-file-csv"></i> Ekspor CSV
+          </button>
+
+          <button class="btn-close-dashboard" id="btnCloseDashboard" title="Kembali ke Tampilan Pembelajaran">
+            <i class="fa-solid fa-xmark"></i> Tutup Dashboard
+          </button>
+        </div>
+      </div>
+
+      <div class="dashboard-content-scroll">
+        
+        <!-- SECTION 1: RINGKASAN METRIK DESKRIPTIF (DESCRIPTIVE ANALYTICS) -->
+        <div class="metrics-row">
+          <div class="metric-card">
+            <div class="metric-icon-wrap icon-blue">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="metric-data">
+              <span class="metric-label">Total Peserta Didik</span>
+              <strong class="metric-val" id="metricTotalStudents">0</strong>
+              <small class="metric-note" id="metricActiveDatasetNote">Semua Data</small>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-wrap icon-green">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div class="metric-data">
+              <span class="metric-label">Rata-rata Nilai Kuis</span>
+              <strong class="metric-val" id="metricAvgScore">0</strong>
+              <small class="metric-note">Tertinggi: <span id="metricMaxScore">0</span> • Terendah: <span id="metricMinScore">0</span></small>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-wrap icon-amber">
+              <i class="fa-solid fa-stopwatch"></i>
+            </div>
+            <div class="metric-data">
+              <span class="metric-label">Rata-rata Durasi Belajar</span>
+              <strong class="metric-val" id="metricAvgDuration">0m 0s</strong>
+              <small class="metric-note">Waktu aktif per sesi</small>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-wrap icon-purple">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div class="metric-data">
+              <span class="metric-label">Penyelesaian Materi</span>
+              <strong class="metric-val" id="metricCompletionRate">0%</strong>
+              <small class="metric-note">Tuntas tonton video: <span id="metricVideoDoneRate">0%</span></small>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: GRAFIK VISUALISASI DESKRIPTIF -->
+        <div class="charts-grid">
+          <!-- Chart 1: Distribusi Nilai Siswa -->
+          <div class="chart-box">
+            <div class="chart-header">
+              <div class="ch-left">
+                <i class="fa-solid fa-chart-pie"></i>
+                <h3>Distribusi Capaian Nilai Kuis</h3>
+              </div>
+              <span class="ch-badge">Descriptive Analytics</span>
+            </div>
+            <div class="chart-body">
+              <canvas id="scoreDistributionChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Analisis Butir Soal (% Benar vs Salah) -->
+          <div class="chart-box">
+            <div class="chart-header">
+              <div class="ch-left">
+                <i class="fa-solid fa-chart-column"></i>
+                <h3>Analisis Butir Soal (% Benar vs Salah)</h3>
+              </div>
+              <span class="ch-badge">Descriptive Analytics</span>
+            </div>
+            <div class="chart-body">
+              <canvas id="itemAnalysisChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 3: Tren Aktivitas Belajar per Modul -->
+          <div class="chart-box full-span">
+            <div class="chart-header">
+              <div class="ch-left">
+                <i class="fa-solid fa-wave-square"></i>
+                <h3>Tingkat Akses Siswa pada Setiap Layar Materi</h3>
+              </div>
+              <span class="ch-badge">Activity Log</span>
+            </div>
+            <div class="chart-body">
+              <canvas id="moduleAccessChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: DIAGNOSTIC ANALYTICS & REKOMENDASI GURU -->
+        <div class="diagnostic-grid">
+          
+          <!-- Box Diagnostic Analytics -->
+          <div class="diag-card">
+            <div class="diag-header header-orange">
+              <i class="fa-solid fa-stethoscope"></i>
+              <h3>Diagnostic Analytics: Temuan Kendala Belajar</h3>
+            </div>
+            <div class="diag-body" id="diagnosticSummaryBox">
+              <!-- Dinamis diisi analytics.js -->
+              <div class="diag-item">
+                <i class="fa-solid fa-spinner fa-spin"></i> Memuat analisis diagnostik data...
+              </div>
+            </div>
+          </div>
+
+          <!-- Box Rekomendasi Instruksional Guru -->
+          <div class="diag-card">
+            <div class="diag-header header-blue">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <h3>Pedagogical Recommendations: Tindak Lanjut Guru</h3>
+            </div>
+            <div class="diag-body" id="teacherRecommendationsBox">
+              <!-- Dinamis diisi analytics.js -->
+              <div class="diag-item">
+                <i class="fa-solid fa-spinner fa-spin"></i> Memuat saran tindak lanjut guru...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: TABEL DATA PESERTA DIDIK -->
+        <div class="table-section-card">
+          <div class="table-toolbar">
+            <div class="tt-left">
+              <h3><i class="fa-solid fa-table-list"></i> Daftar Riwayat Aktivitas & Hasil Peserta Didik</h3>
+              <p>Menampilkan seluruh data log pembelajaran yang tersimpan secara persisten di sistem.</p>
+            </div>
+            <div class="tt-right">
+              <div class="search-input-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="dbSearchInput" placeholder="Cari nama peserta didik...">
+              </div>
+              <select id="dbFilterStatus" class="select-filter">
+                <option value="all">Semua Status</option>
+                <option value="mahir">Mahir (Nilai 85–100)</option>
+                <option value="cakap">Cakap (Nilai 70–84)</option>
+                <option value="perlu_bimbingan">Perlu Bimbingan (&lt;70)</option>
+              </select>
+              <button class="btn-clear-real-data" id="btnClearRealData" title="Reset data siswa uji coba lokal">
+                <i class="fa-solid fa-trash-can"></i> Hapus Data Asli
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="students-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>ID Siswa</th>
+                  <th>Nama Peserta Didik</th>
+                  <th>Tipe Data</th>
+                  <th>Durasi Belajar</th>
+                  <th>Materi Tuntas</th>
+                  <th>Video</th>
+                  <th>Nilai Kuis</th>
+                  <th>Percobaan</th>
+                  <th>Status Pemahaman</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="studentsTableBody">
+                <!-- Diisi dinamis oleh analytics.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= MODAL PIN GURU ================= -->
+  <div class="modal-backdrop" id="modalPinGuru" style="display: none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+        <h3>Verifikasi Akses Guru</h3>
+        <button class="btn-close-modal" id="btnClosePinModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Halaman ini dikhususkan untuk Guru dan Administrator guna memantau data analitik pembelajaran.</p>
+        <div class="pin-input-group">
+          <label for="teacherPinInput">Masukkan PIN Akses Guru:</label>
+          <input type="password" id="teacherPinInput" maxlength="6" placeholder="Default PIN: 1234" autofocus>
+          <span class="pin-hint">Gunakan PIN default: <strong>1234</strong></span>
+          <div class="pin-error-msg" id="pinErrorMsg" style="display: none;">PIN salah! Silakan coba lagi.</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" id="btnCancelPin">Batal</button>
+        <button class="btn-modal-submit" id="btnSubmitPin">Buka Dashboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL DETAIL SISWA ================= -->
+  <div class="modal-backdrop" id="modalStudentDetail" style="display: none;">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <div class="modal-icon"><i class="fa-solid fa-id-card"></i></div>
+        <div>
+          <h3 id="modalStudentName">Detail Aktivitas Siswa</h3>
+          <small id="modalStudentID">ID: -</small>
+        </div>
+        <button class="btn-close-modal" id="btnCloseDetailModal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalStudentDetailBody">
+        <!-- Dinamis diisi analytics.js -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" id="btnCloseDetailModalBottom">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logic Scripts -->
+  <script src="analytics.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
